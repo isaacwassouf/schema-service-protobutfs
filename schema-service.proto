@@ -1,0 +1,15 @@
+syntax = "proto3";
+
+option go_package = "./schema-management-service";
+
+service SchemaService {
+  rpc CreateTable(CreateTableRequest) returns (CreateTableResponse);
+}
+
+message CreateTableRequest {
+  string table_name = 1;
+}
+
+message CreateTableResponse {
+  string message = 1;
+}
