@@ -4,6 +4,7 @@ option go_package = "./schema-management-service";
 
 service SchemaService {
   rpc CreateTable(CreateTableRequest) returns (CreateTableResponse);
+  rpc DropTable (DropTableRequest) returns (DropTableResponse);
 }
 
 
@@ -21,5 +22,13 @@ message CreateTableRequest {
 }
 
 message CreateTableResponse {
+  string message = 1;
+}
+
+message DropTableRequest {
+  string table_name = 1;
+}
+
+message DropTableResponse {
   string message = 1;
 }
