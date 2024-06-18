@@ -2,18 +2,41 @@ syntax = "proto3";
 
 option go_package = "./schema-management-service";
 
+import "google/protobuf/empty.proto";
+
 service SchemaService {
   rpc CreateTable(CreateTableRequest) returns (CreateTableResponse);
   rpc DropTable (DropTableRequest) returns (DropTableResponse);
 }
 
+message VarCharColumn {
+  uint32 length = 1;
+}
+
+enum IntegerColumnType {
+  INT = 0;
+  BIGINT = 1;
+  MEDIUMINT = 2;
+  SMALLINT = 3;
+  TINYINT = 4;
+}
+
+message IntegerColumn {
+  IntegerColumnType type = 2;
+  bool is_unsigned = 3;
+}
 
 message Column {
   string name = 1;
-  string type = 2;
-  bool is_primary_key = 3;
-  bool is_unique = 4;
-  bool not_nullable = 5;
+  oneof type {
+    google.protobuf.Empty bool_column = 2;
+    google.protobuf.Empty timestamp_column = 3;
+    VarCharColumn varchar_column = 4;
+    IntegerColumn int_column = 5;
+  }
+  bool is_primary_key = 6 ;
+  bool is_unique = 7;
+  bool not_nullable = 8;
 }
 
 message CreateTableRequest {
@@ -32,3 +55,4 @@ message DropTableRequest {
 message DropTableResponse {
   string message = 1;
 }
+
