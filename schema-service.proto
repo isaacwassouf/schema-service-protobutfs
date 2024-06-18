@@ -22,8 +22,9 @@ enum IntegerColumnType {
 }
 
 message IntegerColumn {
-  IntegerColumnType type = 2;
-  bool is_unsigned = 3;
+  IntegerColumnType type = 1;
+  bool is_unsigned = 2;
+  bool auto_increment = 3;
 }
 
 message Column {
