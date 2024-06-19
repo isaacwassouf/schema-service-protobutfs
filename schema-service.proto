@@ -46,7 +46,8 @@ message Column {
   bool is_primary_key = 6 ;
   bool is_unique = 7;
   bool not_nullable = 8;
-  ForeignKey foreign_key = 9;
+  string default_value = 9;
+  ForeignKey foreign_key = 10;
 }
 
 message CreateTableRequest {
