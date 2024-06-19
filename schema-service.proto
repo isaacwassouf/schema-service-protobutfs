@@ -11,10 +11,6 @@ service SchemaService {
   rpc DropColumn (DropColumnRequest) returns (DropColumnResponse);
 }
 
-message VarCharColumn {
-  uint32 length = 1;
-}
-
 enum IntegerColumnType {
   INT = 0;
   BIGINT = 1;
@@ -23,10 +19,20 @@ enum IntegerColumnType {
   TINYINT = 4;
 }
 
+message VarCharColumn {
+  uint32 length = 1;
+}
+
 message IntegerColumn {
   IntegerColumnType type = 1;
   bool is_unsigned = 2;
   bool auto_increment = 3;
+}
+
+message ForeignKey {
+  string table_name = 1;
+  string column_name = 2;
+  bool is_cascade = 3;
 }
 
 message Column {
@@ -40,6 +46,7 @@ message Column {
   bool is_primary_key = 6 ;
   bool is_unique = 7;
   bool not_nullable = 8;
+  ForeignKey foreign_key = 9;
 }
 
 message CreateTableRequest {
