@@ -10,6 +10,7 @@ service SchemaService {
   rpc AddColumn (AddColumnRequest) returns (AddColumnResponse);
   rpc DropColumn (DropColumnRequest) returns (DropColumnResponse);
   rpc ListTables (google.protobuf.Empty) returns (ListTablesResponse);
+  rpc ListColumns (ListColumnsRequest) returns (ListColumnsResponse);
 }
 
 enum IntegerColumnType {
@@ -96,3 +97,12 @@ message TableDetails {
 message ListTablesResponse {
   repeated TableDetails tables = 1;
 }
+
+message ListColumnsRequest {
+  string table_name = 1;
+}
+
+message ListColumnsResponse {
+  repeated Column columns = 1;
+}
+
