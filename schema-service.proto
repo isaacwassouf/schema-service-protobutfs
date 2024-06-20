@@ -8,6 +8,7 @@ service SchemaService {
   rpc CreateTable(CreateTableRequest) returns (CreateTableResponse);
   rpc DropTable (DropTableRequest) returns (DropTableResponse);
   rpc AddColumn (AddColumnRequest) returns (AddColumnResponse);
+  rpc AddForeignKey (AddForeignKeyRequest) returns (AddForeignKeyResponse);
   rpc DropColumn (DropColumnRequest) returns (DropColumnResponse);
   rpc ListTables (google.protobuf.Empty) returns (ListTablesResponse);
   rpc ListColumns (ListColumnsRequest) returns (ListColumnsResponse);
@@ -49,7 +50,6 @@ message Column {
   bool is_unique = 7;
   bool not_nullable = 8;
   string default_value = 9;
-  ForeignKey foreign_key = 10;
 }
 
 message CreateTableRequest {
@@ -104,5 +104,13 @@ message ListColumnsRequest {
 
 message ListColumnsResponse {
   repeated Column columns = 1;
+}
+
+message AddForeignKeyRequest {
+  ForeignKey foreign_key = 1;
+}
+
+message AddForeignKeyResponse {
+  string message = 1;
 }
 
