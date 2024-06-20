@@ -22,6 +22,13 @@ enum IntegerColumnType {
   TINYINT = 4;
 }
 
+enum ReferentionalAction {
+  CASCADE = 0;
+  SET_NULL = 1;
+  RESTRICT = 2;
+  NO_ACTION = 3;
+}
+
 message VarCharColumn {
   uint32 length = 1;
 }
@@ -33,9 +40,10 @@ message IntegerColumn {
 }
 
 message ForeignKey {
-  string table_name = 1;
-  string column_name = 2;
-  bool is_cascade = 3;
+  string reference_table_name = 1;
+  string reference_column_name = 2;
+  ReferentionalAction on_update = 3;
+  ReferentionalAction on_delete = 4;
 }
 
 message Column {
@@ -107,7 +115,9 @@ message ListColumnsResponse {
 }
 
 message AddForeignKeyRequest {
-  ForeignKey foreign_key = 1;
+  string table_name = 1;
+  string column_name = 2;
+  ForeignKey foreign_key = 3;
 }
 
 message AddForeignKeyResponse {
