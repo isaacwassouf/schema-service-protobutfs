@@ -22,10 +22,10 @@ enum IntegerColumnType {
 }
 
 enum ReferentialAction {
-  CASCADE = 0;
-  SET_NULL = 1;
-  RESTRICT = 2;
-  NO_ACTION = 3;
+  NO_ACTION = 0;
+  CASCADE = 1;
+  SET_NULL = 2;
+  RESTRICT = 3;
 }
 
 message VarCharColumn {
