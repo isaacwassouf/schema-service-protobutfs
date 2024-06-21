@@ -11,6 +11,7 @@ service SchemaService {
   rpc DropColumn (DropColumnRequest) returns (DropColumnResponse);
   rpc ListTables (google.protobuf.Empty) returns (ListTablesResponse);
   rpc ListColumns (ListColumnsRequest) returns (ListColumnsResponse);
+  rpc AddForeignKey (AddForeignKeyRequest) returns (AddForeignKeyResponse);
 }
 
 enum IntegerColumnType {
@@ -116,3 +117,12 @@ message ListColumnsResponse {
   repeated ForeignKey foreign_keys = 2;
 }
 
+message AddForeignKeyRequest {
+  string table_name = 1;
+  bool not_nullable = 2;
+  ForeignKey foreign_key = 3;
+}
+
+message AddForeignKeyResponse {
+  string message = 1;
+}
