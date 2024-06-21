@@ -40,7 +40,7 @@ message IntegerColumn {
 
 message ForeignKey {
   string column_name = 1;
-  string reference_table_name = 2
+  string reference_table_name = 2;
   string reference_column_name = 3;
   ReferentialAction on_update = 4;
   ReferentialAction on_delete = 5;
