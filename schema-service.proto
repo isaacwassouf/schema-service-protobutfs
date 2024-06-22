@@ -105,6 +105,7 @@ message TableDetails {
   uint64 table_size = 2;
   uint64 rows_count = 3;
   string table_comment = 4;
+  string create_time = 5;
 }
 
 message ListTablesResponse {
