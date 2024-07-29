@@ -4,6 +4,8 @@ option go_package = "./schema-management-service";
 
 import "google/protobuf/empty.proto";
 
+package protos;
+
 service SchemaService {
   rpc CreateTable(CreateTableRequest) returns (CreateTableResponse);
   rpc DropTable (DropTableRequest) returns (DropTableResponse);
