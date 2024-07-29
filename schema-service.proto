@@ -76,9 +76,9 @@ message Column {
     DecimalColumn decimal_column = 7;
     google.protobuf.Empty text_column = 8;
   }
-  bool is_unique = 7;
-  bool not_nullable = 8;
-  string default_value = 9;
+  bool is_unique = 9;
+  bool not_nullable = 10;
+  string default_value = 11;
 }
 
 message CreateTableRequest {
