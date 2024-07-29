@@ -23,6 +23,11 @@ enum IntegerColumnType {
   TINYINT = 4;
 }
 
+enum FixedPointColumnType {
+  FLOAT = 0;
+  DOUBLE = 1;
+}
+
 enum ReferentialAction {
   NO_ACTION = 0;
   CASCADE = 1;
@@ -40,6 +45,16 @@ message IntegerColumn {
   bool auto_increment = 3;
 }
 
+message FixedPointColumn {
+  FixedPointColumnType type = 1;
+  uint32 precision = 2;
+}
+
+message DecimalColumn {
+  uint32 precision = 1;
+  uint32 scale = 2;
+}
+
 message ForeignKey {
   string column_name = 1;
   string reference_table_name = 2;
@@ -55,8 +70,10 @@ message Column {
     google.protobuf.Empty timestamp_column = 3;
     VarCharColumn varchar_column = 4;
     IntegerColumn int_column = 5;
+    FixedPointColumn fixed_point_column = 6;
+    DecimalColumn decimal_column = 7;
+    google.protobuf.Empty text_column = 8;
   }
-  bool is_primary_key = 6 ;
   bool is_unique = 7;
   bool not_nullable = 8;
   string default_value = 9;
